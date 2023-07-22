@@ -21,7 +21,7 @@ class GradientText extends StatelessWidget {
       shaderCallback: (bounds) => gradient.createShader(
         Rect.fromLTWH(0, 0, bounds.width, bounds.height),
       ),
-      child: SelectableText(text, style: style),
+      child: SelectableText(text, textAlign: textAlign, style: style),
     );
   }
 }
@@ -52,11 +52,6 @@ class GradientAnimatedText extends AnimatedText {
   late Animation<double> _typewriterText;
 
   @override
-  Duration get remaining =>
-      speed *
-      (textCharacters.length + extraLengthForBlinks - _typewriterText.value);
-
-  @override
   void initAnimation(AnimationController controller) {
     _typewriterText = CurveTween(
       curve: curve,
@@ -78,13 +73,12 @@ class GradientAnimatedText extends AnimatedText {
                 style: const TextStyle(color: Colors.transparent),
               )
             ],
-            style: DefaultTextStyle.of(context).style.merge(textStyle),
+            style: textStyle,
           ),
           textAlign: textAlign,
         ),
       );
 
-  /// Widget showing partial text
   @override
   Widget animatedBuilder(BuildContext context, Widget? child) {
     final textLen = textCharacters.length;
@@ -119,7 +113,7 @@ class GradientAnimatedText extends AnimatedText {
                   : const TextStyle(color: Colors.transparent),
             )
           ],
-          style: DefaultTextStyle.of(context).style.merge(textStyle),
+          style: textStyle,
         ),
         textAlign: textAlign,
       ),

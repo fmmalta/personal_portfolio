@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_portfolio/src/app/widgets/gradient_text.dart';
 import 'package:personal_portfolio/src/constans.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class AboutMeSection extends StatelessWidget {
   const AboutMeSection({super.key});
@@ -13,19 +14,48 @@ class AboutMeSection extends StatelessWidget {
       children: [
         Container(
           width: MediaQuery.of(context).size.width / 2.2,
-          margin: const EdgeInsets.symmetric(vertical: 30),
+          margin: EdgeInsets.symmetric(vertical: 3.sw),
           child: GradientText(
             gradient: kGradientText,
             'Collaborate with me to create impactful results.',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 36,
+                  fontSize: 3.sw,
                 ),
           ),
         ),
-        Container(
-          height: 300,
-          margin: const EdgeInsets.only(bottom: 50),
+        const CardPresentation(),
+      ],
+    );
+  }
+}
+
+class CardPresentation extends StatelessWidget {
+  const CardPresentation({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var deviceType = getDeviceType(MediaQuery.of(context).size);
+    switch (deviceType) {
+      case DeviceScreenType.mobile:
+        return Container(
+          margin: EdgeInsets.only(bottom: 5.screenHeight),
+          child: Column(
+            children: aboutMeItem
+                .map(
+                  (item) => AboutMeCard(
+                    icon: item.icon,
+                    title: item.title,
+                    description: item.description,
+                  ),
+                )
+                .toList(),
+          ),
+        );
+      default:
+        return Container(
+          height: 30.screenHeight,
+          margin: EdgeInsets.only(bottom: 5.screenHeight),
           child: GridView.builder(
             itemCount: aboutMeItem.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -43,9 +73,8 @@ class AboutMeSection extends StatelessWidget {
               );
             },
           ),
-        )
-      ],
-    );
+        );
+    }
   }
 }
 
@@ -62,10 +91,10 @@ class AboutMeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-      height: 200,
-      width: 50,
+      margin: EdgeInsets.symmetric(horizontal: 1.5.sw, vertical: 2.5.sh),
+      padding: EdgeInsets.symmetric(horizontal: 2.sw, vertical: 4.sh),
+      height: 30.sh,
+      width: 45.sw,
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xFF242424), width: 1),
         borderRadius: BorderRadius.circular(3),

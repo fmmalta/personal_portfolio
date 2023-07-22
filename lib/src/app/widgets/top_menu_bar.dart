@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_portfolio/src/constans.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TopBar extends StatefulWidget {
@@ -22,7 +23,7 @@ class _TopBarState extends State<TopBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
+      margin: EdgeInsets.symmetric(horizontal: 6.sw, vertical: 1.sh),
       child: Column(
         children: [
           Row(
@@ -82,7 +83,7 @@ class _TopBarState extends State<TopBar> {
               )
             ],
           ),
-          const Divider(color: Colors.white10),
+          const Divider(),
         ],
       ),
     );
