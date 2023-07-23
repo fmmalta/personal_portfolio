@@ -21,12 +21,13 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Outfit',
             scaffoldBackgroundColor: Colors.black,
             dividerTheme: const DividerThemeData(color: Colors.white10),
-            textTheme: const TextTheme(
-              bodyMedium: TextStyle(color: kDefaultTextColor),
-              bodySmall: TextStyle(color: kDefaultTextColor),
+            textTheme: TextTheme(
+              bodyLarge: TextStyle(fontSize: 3.7.sw, color: kDefaultTextColor),
+              bodyMedium: TextStyle(color: kDefaultTextColor, fontSize: 3.sw),
+              bodySmall: TextStyle(color: kDefaultTextColor, fontSize: 2.5.sw),
             ),
           ),
-          home: const HomeScreenDesktop()),
+          home: const HomeScreen()),
     );
   }
 }

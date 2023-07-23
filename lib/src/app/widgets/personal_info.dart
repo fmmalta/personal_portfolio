@@ -16,7 +16,7 @@ class PersonalInfo extends StatelessWidget {
         children: [
           SizedBox(height: 3.sh),
           CircleAvatar(
-            radius: 10.2.sw,
+            radius: 10.15.sw,
             backgroundColor: Colors.white,
             child: CircleAvatar(
               radius: 10.sw,
@@ -24,15 +24,10 @@ class PersonalInfo extends StatelessWidget {
             ),
           ),
           SizedBox(height: 3.sh),
-          SelectableText.rich(
-            TextSpan(
-              text: "Hi, I'm Fellipe Malta 👋",
-              style: TextStyle(fontSize: 1.6.sw),
-            ),
-          ),
+          const SelectableText.rich(TextSpan(text: "Hi, I'm Fellipe Malta 👋")),
           SizedBox(height: 3.sh),
           SizedBox(
-            width: MediaQuery.of(context).size.width / 2.2,
+            width: MediaQuery.of(context).size.width / 2,
             child: AnimatedTextKit(
               isRepeatingAnimation: false,
               animatedTexts: [
@@ -41,10 +36,7 @@ class PersonalInfo extends StatelessWidget {
                   gradient: kGradientText,
                   speed: const Duration(milliseconds: 70),
                   textAlign: TextAlign.center,
-                  textStyle: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: 3.sw),
+                  textStyle: Theme.of(context).textTheme.bodyLarge,
                 )
               ],
             ),
@@ -62,27 +54,26 @@ class PersonalInfo extends StatelessWidget {
               );
             },
             style: ElevatedButton.styleFrom(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 4.sw, vertical: 2.5.sh),
-                backgroundColor: const Color(0xFF242424),
-                foregroundColor: const Color(0xFF242424),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 2.sw,
+                  vertical: 1.5.sh,
+                ),
+                backgroundColor: kAccentColor,
+                foregroundColor: kAccentColor,
                 surfaceTintColor: Colors.white10,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(3),
                 ),
-                side: const BorderSide(color: Color(0xFF242424))),
+                side: const BorderSide(color: kAccentColor)),
             child: IntrinsicWidth(
               child: Row(
                 children: [
                   Text(
                     'Latest Projects',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(fontSize: 18, fontWeight: FontWeight.w400),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   SizedBox(width: 1.5.sw),
-                  const Icon(Icons.open_in_new, color: kDefaultTextColor)
+                  Icon(Icons.open_in_new, size: 2.sh, color: kDefaultTextColor)
                 ],
               ),
             ),

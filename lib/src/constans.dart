@@ -7,3 +7,4 @@ const kGradientText = LinearGradient(
 );
 
 const kDefaultTextColor = Color(0xFF9A9A9A);
+const kAccentColor = Color(0xFF242424);

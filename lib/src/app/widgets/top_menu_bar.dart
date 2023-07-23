@@ -19,11 +19,25 @@ String? encodeQueryParameters(Map<String, String> params) {
       .join('&');
 }
 
+Future<bool> _sendEmail() async {
+  return launchUrl(
+    Uri(
+      scheme: 'mailto',
+      path: _email,
+      query: encodeQueryParameters(
+        <String, String>{'subject': "Hi, I've came from your portfolio and..."},
+      ),
+    ),
+  );
+}
+
+const String _email = 'fellipedmmalta@gmail.com';
+
 class _TopBarState extends State<TopBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 6.sw, vertical: 1.sh),
+      margin: EdgeInsets.symmetric(horizontal: 5.sw, vertical: 1.sh),
       child: Column(
         children: [
           Row(
@@ -31,30 +45,18 @@ class _TopBarState extends State<TopBar> {
             children: [
               IntrinsicWidth(
                 child: ListTile(
-                    onTap: () {
-                      launchUrl(
-                        Uri(
-                          scheme: 'mailto',
-                          path: 'fellipedmmalta@gmail.com',
-                          query: encodeQueryParameters(
-                            <String, String>{
-                              'subject':
-                                  "Hi, I've came from your portfolio and..."
-                            },
-                          ),
-                        ),
-                      );
-                    },
-                    leading: const CircleAvatar(
-                      backgroundColor: Color.fromRGBO(36, 36, 36, 1),
+                    onTap: _sendEmail,
+                    leading: CircleAvatar(
+                      radius: 2.sh,
+                      backgroundColor: const Color.fromRGBO(36, 36, 36, 1),
                       child: Icon(
                         Icons.mail,
-                        size: 16,
+                        size: 2.sh,
                         color: kDefaultTextColor,
                       ),
                     ),
                     title: Text(
-                      'fellipedmmalta@gmail.com',
+                      _email,
                       style: Theme.of(context).textTheme.bodySmall,
                     )),
               ),
@@ -77,8 +79,10 @@ class _TopBarState extends State<TopBar> {
                 child: Text(
                   'LinkedIn',
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color:
-                          isLinkedinOnHover ? Colors.white : kDefaultTextColor),
+                        color: isLinkedinOnHover
+                            ? Colors.white
+                            : kDefaultTextColor,
+                      ),
                 ),
               )
             ],

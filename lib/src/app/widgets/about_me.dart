@@ -13,15 +13,13 @@ class AboutMeSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width / 2.2,
+          width: MediaQuery.of(context).size.width / 2,
           margin: EdgeInsets.symmetric(vertical: 3.sw),
           child: GradientText(
             gradient: kGradientText,
             'Collaborate with me to create impactful results.',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 3.sw,
-                ),
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         const CardPresentation(),
@@ -35,7 +33,13 @@ class CardPresentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var deviceType = getDeviceType(MediaQuery.of(context).size);
+    var deviceType = getDeviceType(
+        MediaQuery.of(context).size,
+        const ScreenBreakpoints(
+          desktop: 600,
+          tablet: 600,
+          watch: 200,
+        ));
     switch (deviceType) {
       case DeviceScreenType.mobile:
         return Container(
@@ -54,24 +58,18 @@ class CardPresentation extends StatelessWidget {
         );
       default:
         return Container(
-          height: 30.screenHeight,
           margin: EdgeInsets.only(bottom: 5.screenHeight),
-          child: GridView.builder(
-            itemCount: aboutMeItem.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              childAspectRatio: 1.1,
-            ),
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              final item = aboutMeItem[index];
-              return AboutMeCard(
-                icon: item.icon,
-                title: item.title,
-                description: item.description,
-              );
-            },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: aboutMeItem
+                .map(
+                  (item) => AboutMeCard(
+                    icon: item.icon,
+                    title: item.title,
+                    description: item.description,
+                  ),
+                )
+                .toList(),
           ),
         );
     }
@@ -92,31 +90,30 @@ class AboutMeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 1.5.sw, vertical: 2.5.sh),
-      padding: EdgeInsets.symmetric(horizontal: 2.sw, vertical: 4.sh),
-      height: 30.sh,
-      width: 45.sw,
+      padding: EdgeInsets.all(2.sh),
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFF242424), width: 1),
+        border: Border.all(color: kAccentColor, width: 1),
         borderRadius: BorderRadius.circular(3),
         color: const Color(0xFF1A1A1A),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const Spacer(),
           Icon(icon, color: Colors.white),
-          const SizedBox(height: 20),
-          GradientText(
-            gradient: kGradientText,
-            title,
-            style: Theme.of(context).textTheme.bodySmall,
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.sh),
+            child: GradientText(
+              gradient: kGradientText,
+              title,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
-          const SizedBox(height: 20),
-          SelectableText(description,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall!
-                  .copyWith(color: const Color(0xFF8A8A8A))),
+          SizedBox(
+            width: 60.sw,
+            child: SelectableText(description,
+                style: Theme.of(context).textTheme.bodySmall),
+          ),
         ],
       ),
     );

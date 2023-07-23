@@ -3,14 +3,14 @@ import 'package:personal_portfolio/src/app/widgets/about_me.dart';
 import 'package:personal_portfolio/src/app/widgets/personal_info.dart';
 import 'package:personal_portfolio/src/app/widgets/top_menu_bar.dart';
 
-class HomeScreenDesktop extends StatefulWidget {
-  const HomeScreenDesktop({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomeScreenDesktop> createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreenDesktop> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
