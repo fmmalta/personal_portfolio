@@ -13,9 +13,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        children: const [TopBar(), PersonalInfo(), AboutMeSection()],
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: Scaffold(
+        body: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: const [TopBar(), PersonalInfo(), AboutMeSection()],
+        ),
       ),
     );
   }
