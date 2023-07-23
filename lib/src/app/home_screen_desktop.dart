@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
       bottom: false,
       child: Scaffold(
         body: ListView(
-          physics: const BouncingScrollPhysics(),
           children: const [TopBar(), PersonalInfo(), AboutMeSection()],
         ),
       ),
