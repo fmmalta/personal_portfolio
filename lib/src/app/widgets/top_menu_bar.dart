@@ -56,7 +56,7 @@ class _TopBarState extends State<TopBar> {
                       ),
                     ),
                     title: Text(
-                      _email,
+                      'Get in Touch',
                       style: Theme.of(context).textTheme.bodySmall,
                     )),
               ),
