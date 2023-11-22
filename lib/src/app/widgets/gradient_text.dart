@@ -37,15 +37,13 @@ class GradientAnimatedText extends AnimatedText {
   GradientAnimatedText(
     String text, {
     required this.gradient,
-    TextAlign textAlign = TextAlign.start,
-    TextStyle? textStyle,
+    super.textAlign = TextAlign.start,
+    super.textStyle,
     this.speed = const Duration(milliseconds: 30),
     this.curve = Curves.linear,
     this.cursor = '_',
   }) : super(
           text: text,
-          textAlign: textAlign,
-          textStyle: textStyle,
           duration: speed * (text.characters.length + extraLengthForBlinks),
         );
 
