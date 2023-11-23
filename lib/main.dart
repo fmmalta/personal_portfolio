@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:personal_portfolio/src/app/pages/home/home_screen.dart';
-import 'package:personal_portfolio/src/app/pages/learn_dart/learn_dart.dart';
-import 'package:personal_portfolio/src/app/pages/home/widgets/top_menu_bar.dart';
-import 'package:personal_portfolio/src/constans.dart';
+import 'package:personal_portfolio/src/pages/home/home_screen.dart';
+import 'package:personal_portfolio/src/pages/learn_dart/learn_dart.dart';
+import 'package:personal_portfolio/src/pages/home/widgets/top_menu_bar.dart';
+import 'package:personal_portfolio/src/core/constans.dart';
 
 void main() {
   runApp(const MyApp());

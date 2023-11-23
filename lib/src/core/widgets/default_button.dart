@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_portfolio/src/constans.dart';
+import 'package:personal_portfolio/src/core/constans.dart';
 
 class DefaultButton extends TextButton {
   DefaultButton({

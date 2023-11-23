@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:personal_portfolio/src/app/pages/home/widgets/gradient_text.dart';
-import 'package:personal_portfolio/src/constans.dart';
+import 'package:personal_portfolio/src/pages/home/widgets/gradient_text.dart';
+import 'package:personal_portfolio/src/core/constans.dart';
 
 class AboutMeSection extends StatelessWidget {
   const AboutMeSection({super.key});

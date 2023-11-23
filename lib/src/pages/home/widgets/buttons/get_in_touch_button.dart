@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_portfolio/src/constans.dart';
+import 'package:personal_portfolio/src/core/constans.dart';
 import 'package:personal_portfolio/src/core/widgets/default_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
