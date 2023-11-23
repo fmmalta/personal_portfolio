@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:personal_portfolio/src/app/widgets/gradient_text.dart';
+import 'package:personal_portfolio/src/app/pages/home/widgets/gradient_text.dart';
 import 'package:personal_portfolio/src/constans.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class AboutMeSection extends StatelessWidget {
   const AboutMeSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width / 2,
-          margin: EdgeInsets.symmetric(vertical: 3.sw),
-          child: GradientText(
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 2,
+      child: Column(
+        children: [
+          GradientText(
             gradient: kGradientText,
             'Collaborate with me to create impactful results.',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-        ),
-        const CardPresentation(),
-      ],
+          const CardPresentation(),
+        ],
+      ),
     );
   }
 }
@@ -33,46 +29,28 @@ class CardPresentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var deviceType = getDeviceType(
-        MediaQuery.of(context).size,
-        const ScreenBreakpoints(
-          desktop: 600,
-          tablet: 600,
-          watch: 200,
-        ));
-    switch (deviceType) {
-      case DeviceScreenType.mobile:
-        return Container(
-          margin: EdgeInsets.only(bottom: 5.screenHeight),
-          child: Column(
-            children: aboutMeItem
-                .map(
-                  (item) => AboutMeCard(
-                    icon: item.icon,
-                    title: item.title,
-                    description: item.description,
-                  ),
-                )
-                .toList(),
-          ),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 15),
+      child: LayoutBuilder(builder: (context, constraints) {
+        return Wrap(
+          direction:
+              constraints.maxWidth < 600 ? Axis.vertical : Axis.horizontal,
+          alignment: WrapAlignment.spaceEvenly,
+          spacing: 20,
+          runAlignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: aboutMeItem
+              .map(
+                (item) => AboutMeCard(
+                  icon: item.icon,
+                  title: item.title,
+                  description: item.description,
+                ),
+              )
+              .toList(),
         );
-      default:
-        return Container(
-          margin: EdgeInsets.only(bottom: 5.screenHeight),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: aboutMeItem
-                .map(
-                  (item) => AboutMeCard(
-                    icon: item.icon,
-                    title: item.title,
-                    description: item.description,
-                  ),
-                )
-                .toList(),
-          ),
-        );
-    }
+      }),
+    );
   }
 }
 
@@ -89,8 +67,10 @@ class AboutMeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 1.5.sw, vertical: 2.5.sh),
-      padding: EdgeInsets.all(2.sh),
+      width: 150,
+      height: 220,
+      margin: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         border: Border.all(color: kAccentColor, width: 1),
         borderRadius: BorderRadius.circular(3),
@@ -98,11 +78,11 @@ class AboutMeCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Icon(icon, color: Colors.white),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 2.sh),
+            padding: const EdgeInsets.symmetric(vertical: 2),
             child: GradientText(
               gradient: kGradientText,
               title,
@@ -110,9 +90,10 @@ class AboutMeCard extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 60.sw,
-            child: SelectableText(description,
-                style: Theme.of(context).textTheme.bodySmall),
+            child: SelectableText(
+              description,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
         ],
       ),

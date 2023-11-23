@@ -35,8 +35,9 @@ class GetInTouchButton extends StatelessWidget {
       onTap: _sendEmail,
       textStyle: Theme.of(context).textTheme.bodySmall,
       icon: const CircleAvatar(
+        radius: 16,
         backgroundColor: Color.fromRGBO(36, 36, 36, 1),
-        child: Icon(Icons.mail, color: kDefaultTextColor),
+        child: Icon(Icons.mail, size: 20, color: kDefaultTextColor),
       ),
       label: 'Get in Touch',
     );

@@ -6,17 +6,24 @@ class DefaultButton extends TextButton {
     required String label,
     required void Function()? onTap,
     TextStyle? textStyle,
+    bool selected = false,
     super.key,
   }) : super(
           onPressed: onTap,
           child: Text(label),
+          statesController:
+              MaterialStatesController({if (selected) MaterialState.selected}),
           style: ButtonStyle(
             textStyle: MaterialStateProperty.all(
               textStyle ?? const TextStyle(),
             ),
+            overlayColor: MaterialStateProperty.all(Colors.transparent),
+            padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
             foregroundColor: MaterialStateProperty.resolveWith(
               (states) {
                 if (states.contains(MaterialState.hovered)) {
+                  return Colors.white;
+                } else if (states.contains(MaterialState.selected)) {
                   return Colors.white;
                 } else {
                   return kDefaultTextColor;
@@ -35,17 +42,14 @@ class DefaultButton extends TextButton {
   }) : super(
           onPressed: onTap,
           child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              icon,
-              const SizedBox(width: 10),
-              Flexible(child: Text(label))
-            ],
+            children: <Widget>[icon, const SizedBox(width: 10), Text(label)],
           ),
           style: ButtonStyle(
             textStyle: MaterialStateProperty.all(
               textStyle ?? const TextStyle(),
             ),
+            padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
+            overlayColor: MaterialStateProperty.all(Colors.transparent),
             foregroundColor: MaterialStateProperty.resolveWith(
               (states) {
                 if (states.contains(MaterialState.hovered)) {

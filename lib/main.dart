@@ -1,41 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:personal_portfolio/src/app/home_screen_desktop.dart';
+import 'package:go_router/go_router.dart';
+import 'package:personal_portfolio/src/app/pages/home/home_screen.dart';
+import 'package:personal_portfolio/src/app/pages/learn_dart/learn_dart.dart';
+import 'package:personal_portfolio/src/app/pages/home/widgets/top_menu_bar.dart';
 import 'package:personal_portfolio/src/constans.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final _shellNavigatorKey = GlobalKey<NavigatorState>();
+
+final _router = GoRouter(
+  initialLocation: '/',
+  navigatorKey: _rootNavigatorKey,
+  routes: [
+    ShellRoute(
+      navigatorKey: _shellNavigatorKey,
+      pageBuilder: (context, state, child) {
+        return NoTransitionPage(
+          child: Scaffold(
+            appBar: const TopBar(),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: child,
+            ),
+          ),
+        );
+      },
+      routes: [
+        GoRoute(
+            path: '/',
+            parentNavigatorKey: _shellNavigatorKey,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: HomeScreen())),
+        GoRoute(
+            path: LearnDart.routeName,
+            parentNavigatorKey: _shellNavigatorKey,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: LearnDart())),
+      ],
+    )
+  ],
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveApp(
-      builder: (context) => AnnotatedRegion<SystemUiOverlayStyle>(
-        value:
-            SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.black),
-        child: MaterialApp(
-            color: Colors.black,
-            title: 'Fellipe Malta\'s Portfolio',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primarySwatch: primaryBlack,
-              useMaterial3: true,
-              fontFamily: 'Outfit',
-              scaffoldBackgroundColor: Colors.black,
-              dividerTheme: const DividerThemeData(color: Colors.white10),
-              textTheme: TextTheme(
-                bodyLarge:
-                    TextStyle(fontSize: 3.7.sw, color: kDefaultTextColor),
-                bodyMedium: TextStyle(color: kDefaultTextColor, fontSize: 3.sw),
-                bodySmall:
-                    TextStyle(color: kDefaultTextColor, fontSize: 2.5.sw),
-              ),
-            ),
-            home: const HomeScreen()),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.black),
+      child: MaterialApp.router(
+        routerConfig: _router,
+        color: Colors.black,
+        title: 'Fellipe Malta\'s Portfolio',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: primaryBlack,
+          useMaterial3: true,
+          fontFamily: 'Outfit',
+          scaffoldBackgroundColor: Colors.black,
+          dividerTheme: const DividerThemeData(color: Colors.white10),
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(fontSize: 24, color: kDefaultTextColor),
+            bodyMedium: TextStyle(color: kDefaultTextColor, fontSize: 20),
+            bodySmall: TextStyle(color: kDefaultTextColor, fontSize: 14),
+          ),
+        ),
       ),
     );
   }
