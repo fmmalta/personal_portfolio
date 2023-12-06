@@ -40,7 +40,7 @@ final _router = GoRouter(
             path: LearnDart.routeName,
             parentNavigatorKey: _shellNavigatorKey,
             pageBuilder: (context, state) =>
-                const NoTransitionPage(child: LearnDart())),
+                NoTransitionPage(child: LearnDart())),
       ],
     )
   ],

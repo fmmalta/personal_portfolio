@@ -4,6 +4,7 @@ import 'package:personal_portfolio/src/pages/home/widgets/buttons/get_in_touch_b
 import 'package:personal_portfolio/src/pages/home/widgets/buttons/learn_dart_button.dart';
 import 'package:personal_portfolio/src/pages/home/widgets/buttons/linkedin_button.dart';
 import 'package:personal_portfolio/src/core/widgets/default_button.dart';
+import 'package:personal_portfolio/src/pages/learn_dart/learn_dart.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   const TopBar({super.key});
@@ -26,7 +27,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
                     }),
                 LearnDartButton(
                   onTap: () {
-                    context.go('/learnDart');
+                    context.go(LearnDart.routeName);
                   },
                 ),
                 const GetInTouchButton(),
@@ -41,5 +42,5 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight * 1.2);
 }

@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_portfolio/src/pages/learn_dart/content_pages/primitive_data_and_variables/primitive_data_and_variables.dart';
+
+import 'package:personal_portfolio/src/pages/learn_dart/content.dart';
 import 'package:personal_portfolio/src/pages/learn_dart/cubit/dart_cubit.dart';
 import 'package:personal_portfolio/src/core/widgets/default_button.dart';
 
 class SummaryWidget extends StatelessWidget {
   const SummaryWidget({super.key});
 
-  static final summaryItems = <ContentPage, Widget>{
-    ContentPage.types: const PrimitiveDataAndVariables(),
-    ContentPage.lists: const PrimitiveDataAndVariables(),
-    ContentPage.operators: const PrimitiveDataAndVariables(),
-    ContentPage.loops: const PrimitiveDataAndVariables(),
-    ContentPage.functions: const PrimitiveDataAndVariables(),
-    ContentPage.classes: const PrimitiveDataAndVariables(),
+  static const summaryItems = <ContentPage, String>{
+    ContentPage.introduction: Content.introduction,
+    ContentPage.types: Content.primitiveDataAndVariables,
+    ContentPage.lists: Content.lists,
+    ContentPage.maps: Content.maps,
+    ContentPage.sets: Content.sets,
+    ContentPage.enums: Content.enums,
+    ContentPage.operators: Content.operators,
+    ContentPage.loops: Content.loops,
+    ContentPage.ifelse: Content.conditionals,
+    ContentPage.functions: Content.functions,
+    ContentPage.classes: Content.classes,
   };
 
   @override

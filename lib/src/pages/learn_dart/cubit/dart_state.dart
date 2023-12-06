@@ -1,12 +1,18 @@
 part of 'dart_cubit.dart';
 
 enum ContentPage {
+  introduction(title: 'Introdução'),
   types(title: 'Tipos primitivos e variáveis'),
   lists(title: 'Listas'),
+  sets(title: 'Sets'),
+  enums(title: 'Enums'),
+  maps(title: 'Maps'),
   operators(title: 'Operadores'),
   loops(title: 'Loops'),
+  ifelse(title: 'If/else - Condicionais'),
   functions(title: 'Funções'),
-  classes(title: 'Classes');
+  classes(title: 'Classes'),
+  extensions(title: 'Extensions');
 
   const ContentPage({
     required this.title,
@@ -16,12 +22,12 @@ enum ContentPage {
 }
 
 @immutable
-abstract class DartState {}
-
-class DartInitial extends DartState {}
-
-class DartContent extends DartState {
+abstract class DartState {
   final ContentPage content;
 
-  DartContent({required this.content});
+  const DartState({required this.content});
+}
+
+class DartContent extends DartState {
+  const DartContent({super.content = ContentPage.introduction});
 }
